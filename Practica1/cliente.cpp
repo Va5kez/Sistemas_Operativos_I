@@ -23,7 +23,7 @@ int main()
     Proceso proc3 = {2222, 6, Estados::Terminado, 20};
     Proceso proc4 = {2223, 2, Estados::En_espera, 25};
     Proceso proc5 = {2224, 3, Estados::En_ejecucion, 30};
-    Proceso proc6 = {2224, 5, Estados::Listo, 10};
+    Proceso proc6 = {2225, 5, Estados::Listo, 10};
     s->buffer[s->entrada] = proc1;
     s->entrada++;
     s->buffer[s->entrada] = proc2;
