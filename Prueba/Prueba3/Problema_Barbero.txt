@@ -1,0 +1,46 @@
+Problema: Barbero Dormilon
+
+* Use semaforos para resolver el siguente problema
+* La peluquería tiene un barbero, una silla de peluquero y n sillas para que se sienten los clientes en espera, si es que los hay.
+* Si no hay clientes el barbero se sienta en la silla de peluquero y se duerme. Cuando llega un cliente debe despertar al barbero.
+* Si llegan más clientes mientras el barbero corta el cabello a un cliente, ellos se sientan (si hay sillas desocupadas).
+* Un cliente que entra a la peluquería debe contar el número de clientes que esperan. Si es menor que el número de sillas, él se queda; en caso contrario se va
+
+int barbero = 0; // Semaforo Barbero
+int clientes = 0; // Semaforo clientes
+int sillas_desocupadas = 1; // sillas disponibles
+int sillas_total = N; // N es la cantidad de sillas para los clientes en espera
+
+void Barbero()
+{
+    while(1)
+    {
+        wait(clientes)
+        wait(sillas_desocupadas)
+        sillas_total += 1
+        signal(barbero)
+        signal(sillas_desocupadas)
+        cortar_pelo()               // Corta el pelo al cliente
+    }
+}
+
+void Cliente()
+{
+    while(1)
+    {
+        wait(sillas_desocupadas)
+        if( sillas_total <= 0)
+        {
+            signal(sillas_desocupadas)
+            abandonar_barberia()    // Sillas llenas, entonces el cliente se va
+        } 
+        else
+        {
+            sillas_total -= 1
+            signal(clientes)
+            signal(sillas_desocupadas)
+            wait(barbero)           
+            cliente_cortarse_pelo() // Cliente se corta el pelo
+        }
+    }
+}
