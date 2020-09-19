@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
@@ -38,6 +39,9 @@ int main()
     Segmento *s = (Segmento*) shmat(shm_id, NULL, 0);
     int array_size = s->nProcesos;
     Proceso cola_procesos[array_size];
+    
+    loading("Cargando procesos a la cola ");
+
     for(int i = 0; i < array_size; i++)
         cola_procesos[i] = s->buffer[i];
 

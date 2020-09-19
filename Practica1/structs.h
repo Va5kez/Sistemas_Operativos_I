@@ -30,4 +30,20 @@ struct Segmento
     Proceso buffer[10];
 };
 
+void loading(std::string mensaje)
+{
+    int f = 0;
+    std::string c = ".";
+    std::cout << mensaje;
+    while(f < 6)
+    {
+        std::cout << c;
+        std::cout.flush();
+        c.append(".");
+        f++;
+        usleep(1000000);
+    }
+    std::cout << " 100%" << '\n';
+}
+
 #endif
