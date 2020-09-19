@@ -1,0 +1,32 @@
+ N=10
+int buffer[N]
+int entrada=0
+int salida=0
+int mutexE =1
+int mutexS =1
+int vacio =N
+int lleno =0
+
+
+void productor() {
+	while (1) {
+		x = obtenerItem()
+		wait(vacio)
+		wait(mutexE)
+		buffer[entrada] = x
+		entrada = (entrada+1)%N	
+		signal(mutexE)
+		signal(lleno)
+	}
+}
+void consumidor() {
+	int x
+	while (1) {
+		wait(llena)
+		wait(mutexS)
+		x= buffer[salida]
+		salida = (salida+1)%N	
+		signal(mutexS)
+		signal(lleno)
+	}
+}
